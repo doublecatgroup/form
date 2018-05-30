@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input v-model="name" autocapitalize="none">
+    <input v-model.trim="name" autocapitalize="none">
 
     <label>width: <input :id="idFor('width')" type="number" v-model.number="widthByUnit" step="any"></label>
 

@@ -2,7 +2,7 @@
   <div>
     <window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" @remove="qdel(['item', id])"></window>
     <form @submit.prevent="newItem">
-      <input id="new-item-name" v-model="newItemName" autocapitalize="none">
+      <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
       <button id="new-item">Add</button>
 
       <select v-model="unitName" id="select-unit">
