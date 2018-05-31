@@ -1,10 +1,13 @@
 <template>
-  <div>
+  <tr v-if="exportView == 'yes'">
+    <td v-for="value in exportedData" :key="value.name">{{ value.value }}</td>
+  </tr>
+  <div class="item" v-else>
     <input v-model.trim="name" autocapitalize="none">
 
     <label>width: <input :id="idFor('width')" type="number" v-model.number="widthByUnit" step="any"></label>
 
-    <label>drop:  <input type="number" v-model.number="drop" step="0.1"></label>
+    <label>drop:  <input type="number" v-model.number="drop"></label>
     <label>ratio: <input type="number" v-model.number="ratio" step="0.1"></label>
 
     <select v-model="fabricKeyModel">
@@ -59,15 +62,16 @@ function mkDesign (designNo, designName, key, design) {
   }
 }
 
-export function mkFabric (fabric) {
+export function mkFabric (key, fabric) {
   return {
+    key: key,
     name: fabric.name,
     price: fabric.price,
     designs: R.mapObjIndexed((design, key, _) => mkDesign(fabric.designNo, fabric.designName, key, design), fabric.designs)
   }
 }
 
-const fabrics = R.map(mkFabric, {
+const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
   bolove: {
     name: 'BoLove',
     price: 26,
@@ -93,10 +97,53 @@ const fabrics = R.map(mkFabric, {
   }
 })
 
+export const exportedData = [
+  {
+    name: 'window',
+    value () { return this.name }
+  },
+  {
+    name: 'fabric',
+    value () { return this.fabric.key }
+  },
+  {
+    name: 'design',
+    value () { return this.design.no }
+  },
+  {
+    name: 'color',
+    value () { return this.design.color }
+  },
+  {
+    name: 'width',
+    value () { return this.width / 100 }
+  },
+  {
+    name: 'height',
+    value () { return this.drop / 100 }
+  },
+  {
+    name: 'ratio',
+    value () { return this.ratio }
+  },
+  {
+    name: 'heading',
+    value () {
+      const heading = this.headings[this.heading]
+      return `${heading.cn} (${heading.en})`
+    }
+  },
+  {
+    name: 'material usage',
+    value () { return this.materialUsage }
+  }
+]
+
 export default {
   mkFabric,
+  exportedData,
 
-  props: ['path', 'unit'],
+  props: ['path', 'unit', 'exportView'],
   mixins: [QueryState],
 
   data () {
@@ -132,18 +179,29 @@ export default {
       return this.fabric.designs[this.designKey]
     },
     total () {
-      return this.width * this.ratio * this.price / 100
+      return this.materialUsage * this.price
     },
     widthByUnit: {
       get () { return this.width / this.unit.multiplier },
       set (value) { this.width = value * this.unit.multiplier }
+    },
+    materialUsage () {
+      return this.width * this.ratio / 100
+    },
+    exportedData () {
+      return R.map(v => { return {name: v.name, value: v.value.call(this)} }, exportedData)
     }
   }
 }
 </script>
 
 <style>
-input {
+
+.item {
+  margin-top: 1rem;
+}
+
+.item option {
   width: 5rem;
 }
 

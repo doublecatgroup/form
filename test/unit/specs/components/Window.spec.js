@@ -13,6 +13,7 @@ describe('mkFabric', () => {
       }
     }
     const expected = {
+      key: 'bolove',
       name: 'BoLove',
       price: 26,
       designs: {
@@ -20,6 +21,6 @@ describe('mkFabric', () => {
         '18': {no: 'TH305-18', name: 'P18', color: 'blue'}
       }
     }
-    expect(mkFabric(input)).toEqual(expected)
+    expect(mkFabric('bolove', input)).toEqual(expected)
   })
 })

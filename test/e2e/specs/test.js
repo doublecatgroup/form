@@ -48,7 +48,7 @@ module.exports = {
       // remove items
       .click('button#remove-item-1')
       .click('button#remove-item-2')
-      .assert.urlEquals(devServer)
+      .assert.urlEquals(devServer + '?export=no')
 
       // add an item
       .setValue('input#new-item-name', 'master')
@@ -58,7 +58,7 @@ module.exports = {
 
       // go back
       .back()
-      .assert.urlEquals(devServer)
+      .assert.urlEquals(devServer + '?export=no')
 
       .end()
   }
