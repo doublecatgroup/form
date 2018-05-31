@@ -1,6 +1,6 @@
 <template>
   <div>
-    <window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="qdel(['item', id])"></window>
+    <ol><window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="qdel(['item', id])"></window></ol>
 
     <form class="controls" @submit.prevent="newItem">
       <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">

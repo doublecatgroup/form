@@ -2,7 +2,8 @@
   <tr v-if="exportView">
     <td v-for="value in exportedData" :key="value.name">{{ value.value }}</td>
   </tr>
-  <div class="item" v-else>
+  <li class="item" v-else>
+
     <input v-model.trim="name" autocapitalize="none">
 
     <label>width: <input :id="idFor('width')" type="number" v-model.number="widthByUnit" step="any"></label>
@@ -27,7 +28,7 @@
     <label>price: <input type="number" v-model.number="price" step="any" :class="price == fabric.price ? '' : 'modified'"></label>
     <label>total: <input :id="idFor('total')" type="number" v-model.number="total" step="any" readonly></label>
     <button :id="idFor('remove')" @click="$emit('remove')">Remove</button>
-  </div>
+  </li>
 </template>
 
 <script>
