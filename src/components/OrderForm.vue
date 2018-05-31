@@ -1,6 +1,6 @@
 <template>
   <div>
-    <window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="'no'" @remove="qdel(['item', id])"></window>
+    <window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="qdel(['item', id])"></window>
 
     <form class="controls" @submit.prevent="newItem">
       <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
@@ -10,18 +10,18 @@
         <option v-for="(_, name) in units" :key="name" :value="name">{{ name }}</option>
       </select>
 
-      <select v-model="exportView">
-        <option :key="'no'" :value="'no'">edit</option>
-        <option :key="'yes'" :value="'yes'">export</option>
+      <select v-model="debug">
+        <option :key="false" :value="false">normal</option>
+        <option :key="true" :value="true">debug</option>
       </select>
     </form>
 
-    <div v-if="exportView == 'yes'">
+    <div :style="debug ? '' : 'display: none'">
       <table>
         <tr>
           <th v-for="value in exportedData" :key="value.name">{{ value.name }}</th>
         </tr>
-        <window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="exportView"></window>
+        <window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="true"></window>
       </table>
     </div>
   </div>
@@ -36,12 +36,6 @@ export default {
   components: { window },
   mixins: [QueryState],
 
-  qdata () {
-    return {
-      exportView: {path: 'export', def: 'no'}
-    }
-  },
-
   data () {
     return {
       newItemName: '',
@@ -51,6 +45,7 @@ export default {
         inch: 2.54
       },
       unitName: 'cm',
+      debug: false,
       exportedData: exportedData
     }
   },

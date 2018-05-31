@@ -1,5 +1,5 @@
 <template>
-  <tr v-if="exportView == 'yes'">
+  <tr v-if="exportView">
     <td v-for="value in exportedData" :key="value.name">{{ value.value }}</td>
   </tr>
   <div class="item" v-else>
