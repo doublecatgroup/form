@@ -38,8 +38,8 @@ const sprintf = require('sprintf-js').sprintf
 
 const defaults = {
   name: null,
-  width: 254,
-  drop: 270,
+  width: 240,
+  drop: 230,
   fabricKey: 'bolove',
   designKey: '18',
   heading: 'deepPleat',

@@ -14,29 +14,35 @@ module.exports = {
       // add an item
       .setValue('input#new-item-name', 'master')
       .click('button#new-item')
-      .assert.value('#total-item-1', '132.08')
-      .assert.urlContains(encodeURI('item[1][width]=254'))
+      .assert.value('#total-item-1', '124.8')
+      .assert.urlContains(encodeURI('item[1][width]=240'))
+
+      // change width
+      .clearValue('input#width-item-1')
+      .setValue('input#width-item-1', 254)
 
       // change unit inch
       .click('#select-unit option[value=inch]')
       .assert.value('input#width-item-1', '100')
+      .clearValue('input#width-item-1')
+      .setValue('input#width-item-1', 200)
 
       // change unit back to cm
       .click('#select-unit option[value=cm]')
-      .assert.value('input#width-item-1', '254')
+      .assert.value('input#width-item-1', '508')
 
       // add an other item
       .setValue('input#new-item-name', 'living')
       .click('button#new-item')
-      .assert.value('#total-item-2', '132.08')
-      .assert.urlContains(encodeURI('item[2][width]=254'))
+      .assert.value('#total-item-2', '124.8')
+      .assert.urlContains(encodeURI('item[2][width]=240'))
 
       // modify an item
       .clearValue('input#width-item-2')
       .setValue('input#width-item-2', 100)
       .assert.urlContains(encodeURI('item[2][width]=100'))
       .assert.value('#total-item-2', '52')
-      .assert.value('#total-item-1', '132.08')
+      .assert.value('#total-item-1', '264.16')
 
       // reload page
       .refresh()
@@ -48,17 +54,17 @@ module.exports = {
       // remove items
       .click('button#remove-item-1')
       .click('button#remove-item-2')
-      .assert.urlEquals(devServer + '?export=no')
+      .assert.urlEquals(devServer)
 
       // add an item
       .setValue('input#new-item-name', 'master')
       .click('button#new-item')
-      .assert.value('#total-item-1', '132.08')
-      .assert.urlContains(encodeURI('item[1][width]=254'))
+      .assert.value('#total-item-1', '124.8')
+      .assert.urlContains(encodeURI('item[1][width]=240'))
 
       // go back
       .back()
-      .assert.urlEquals(devServer + '?export=no')
+      .assert.urlEquals(devServer)
 
       .end()
   }
