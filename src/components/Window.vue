@@ -201,6 +201,10 @@ export default {
   margin-top: 1rem;
 }
 
+label {
+  white-space:nowrap;
+}
+
 .item option {
   width: 5rem;
 }
