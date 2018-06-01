@@ -24,7 +24,7 @@ function qdel (path, replace = false) {
 function modifyQuery (fn, replace) {
   const query = fn(this.$route.query)
   const action = replace ? this.$router.replace : this.$router.push
-  action.call(this.$router, {path: '/', query: query})
+  action.call(this.$router, {query: query})
 }
 
 export default {
