@@ -8,7 +8,7 @@
       <option v-for="(value, key) in designs" :key="key" :value="key">{{ value.name }}</option>
     </select>
 
-    <img class="design" :src="`/static/${value.key}/${value.design}.png`" height="64" width="64">
+    <img v-if="designKey !== 'custom'" class="design" :src="`/static/${value.key}/${value.design}.png`" height="64" width="64">
 
     <show-modifications-input placeholder="color" class="color" v-model="color" :original="design.value.color"/>
     <show-modifications-input placeholder="no" class="no" v-model="no" :original="design.value.no"/>
