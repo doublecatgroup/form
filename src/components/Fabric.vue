@@ -10,14 +10,14 @@
 
     <img class="design" :src="`/static/${value.key}/${value.design}.png`" :alt="value.no" height="64" width="64">
 
-    <input class="color" v-model="color" :class="color == design.value.color ? '' : 'modified'">
-    <input class="no" v-model="no" :class="no == design.value.no ? '' : 'modified'">
-
-    <label>price: <input class="price" type="number" v-model.number="price" step="any" :class="price == fabric.price ? '' : 'modified'"></label>
+    <show-modifications-input class="color" v-model="color" :original="design.value.color"/>
+    <show-modifications-input class="no" v-model="no" :original="design.value.no"/>
+    <label>price: <show-modifications-input class="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
   </span>
 </template>
 
 <script>
+import ShowModificationsInput from '@/components/ShowModificationsInput'
 const R = require('ramda')
 const sprintf = require('sprintf-js').sprintf
 
@@ -68,6 +68,8 @@ const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
 
 export default {
   mkFabric,
+
+  components: { ShowModificationsInput },
 
   props: ['value'],
 
@@ -131,9 +133,5 @@ img.design {
   vertical-align: bottom;
   height: 1.12em;
   width: 1.12em;
-}
-
-.modified {
-  color: #ff0000;
 }
 </style>

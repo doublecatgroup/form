@@ -83,6 +83,6 @@ input {
 }
 
 input:read-only {
-    background-color: #FFE;
+    background-color: #EEF;
 }
 </style>
