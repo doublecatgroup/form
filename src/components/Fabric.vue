@@ -5,7 +5,7 @@
     </select>
 
     <select v-model="designKey" class="design">
-      <option v-for="(value, key) in fabric.designs" :key="key" :value="key">{{ `${value.name} (${value.value.color})` }}</option>
+      <option v-for="(value, key) in fabric.designs" :key="key" :value="key">{{ value.name }}</option>
     </select>
 
     <img class="design" :src="`/static/${value.key}/${value.design}.png`" :alt="value.no" height="64" width="64">
@@ -27,11 +27,12 @@ export function mkFabric (key, fabric) {
     name: fabric.name,
     price: fabric.price,
     designs: R.mapObjIndexed((design, key, _) => {
+      const args = R.merge({key}, design)
       return {
-        name: sprintf(fabric.designNameTemplate, key),
+        name: sprintf(fabric.designNameTemplate, args),
         value: {
           design: key,
-          no: sprintf(fabric.designNoTemplate, key),
+          no: sprintf(fabric.designNoTemplate, args),
           color: design.color
         }
       }
@@ -43,8 +44,8 @@ const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
   bolove: {
     name: 'BoLove',
     price: 26,
-    designNameTemplate: 'P%s',
-    designNoTemplate: 'TH305-%s',
+    designNameTemplate: 'P%(key)s',
+    designNoTemplate: 'TH305-%(key)02d',
     designs: {
       '18': {color: 'blue'},
       '19': {color: 'grey'},
@@ -55,8 +56,8 @@ const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
   chenille: {
     name: 'Chenille',
     price: 30,
-    designNameTemplate: '%s',
-    designNoTemplate: '018-%s',
+    designNameTemplate: '%(key)s',
+    designNoTemplate: '018-%(key)s',
     designs: {
       '12': {color: 'brown'},
       '19': {color: 'red'},
