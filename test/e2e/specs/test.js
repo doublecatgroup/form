@@ -22,13 +22,13 @@ module.exports = {
       .setValue('input#width-item-1', 254)
 
       // change unit inch
-      .click('#select-unit option[value=inch]')
+      .click('#select-unit option[value="inch"]')
       .assert.value('input#width-item-1', '100')
       .clearValue('input#width-item-1')
       .setValue('input#width-item-1', 200)
 
       // change unit back to cm
-      .click('#select-unit option[value=cm]')
+      .click('#select-unit option[value="cm"]')
       .assert.value('input#width-item-1', '508')
 
       // add an other item
@@ -65,6 +65,18 @@ module.exports = {
       // go back
       .back()
       .assert.urlEquals(devServer)
+
+      // change fabric
+      .setValue('input#new-item-name', 'master')
+      .click('button#new-item')
+      .click('#item-1 select.fabric option[value="chenille"]')
+      .click('#item-1 select.design option[value="19"]')
+      .assert.value('#item-1 input.color', 'red')
+      .assert.value('#item-1 input.design-no', '018-19')
+      .getAttribute('#item-1 img.design', 'src', function (result) {
+        this.assert.equal(result.value, devServer + 'static/chenille/19.png')
+      })
+      .assert.value('#item-1 input.price', '30')
 
       .end()
   }

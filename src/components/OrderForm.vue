@@ -82,4 +82,7 @@ input {
   margin-top: 1rem;
 }
 
+input:read-only {
+    background-color: #FFE;
+}
 </style>
