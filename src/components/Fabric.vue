@@ -5,14 +5,14 @@
     </select>
 
     <select v-model="designKey" class="design">
-      <option v-for="(value, key) in fabric.designs" :key="key" :value="key">{{ value.name }}</option>
+      <option v-for="(value, key) in designs" :key="key" :value="key">{{ value.name }}</option>
     </select>
 
-    <img class="design" :src="`/static/${value.key}/${value.design}.png`" :alt="value.no" height="64" width="64">
+    <img class="design" :src="`/static/${value.key}/${value.design}.png`" height="64" width="64">
 
-    <show-modifications-input class="color" v-model="color" :original="design.value.color"/>
-    <show-modifications-input class="no" v-model="no" :original="design.value.no"/>
-    <label>price: <show-modifications-input class="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
+    <show-modifications-input placeholder="color" class="color" v-model="color" :original="design.value.color"/>
+    <show-modifications-input placeholder="no" class="no" v-model="no" :original="design.value.no"/>
+    <label>price: <show-modifications-input placeholder="price" class="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
   </span>
 </template>
 
@@ -41,6 +41,14 @@ export function mkFabric (key, fabric) {
 }
 
 const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
+  custom: {
+    name: '-',
+    designNameTemplate: '-',
+    designNoTemplate: '',
+    designs: {
+      custom: {price: 26}
+    }
+  },
   bolove: {
     name: 'BoLove',
     price: 26,
@@ -91,7 +99,7 @@ export default {
     designKey: {
       get () { return this.value.design },
       set (value) {
-        const design = this.fabric.designs[value]
+        const design = this.designs[value]
         this.$emit('input', R.merge(this.value, design.value))
       }
     },
@@ -121,8 +129,12 @@ export default {
       return this.fabrics[this.value.key]
     },
 
+    designs () {
+      return this.fabric.designs
+    },
+
     design () {
-      return this.fabric.designs[this.value.design]
+      return this.designs[this.value.design]
     }
   }
 }

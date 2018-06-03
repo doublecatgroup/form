@@ -31,7 +31,7 @@ const defaults = {
   name: null,
   width: 240,
   drop: 230,
-  fabric: {key: 'bolove', design: '18', no: 'TH305-18', color: 'blue', price: 26},
+  fabric: {key: 'custom', design: 'custom', price: 26},
   heading: 'deepPleat',
   ratio: 2
 }

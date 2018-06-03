@@ -1,5 +1,5 @@
 <template>
-  <input v-model="input" :class="input == original ? '' : 'modified'"/>
+  <input v-model="input" :class="(original && !(input == original)) ? 'modified' : ''"/>
 </template>
 
 <script>
