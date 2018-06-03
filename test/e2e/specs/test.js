@@ -72,7 +72,7 @@ module.exports = {
       .click('#item-1 select.fabric option[value="chenille"]')
       .click('#item-1 select.design option[value="19"]')
       .assert.value('#item-1 input.color', 'red')
-      .assert.value('#item-1 input.design-no', '018-19')
+      .assert.value('#item-1 input.no', '018-19')
       .getAttribute('#item-1 img.design', 'src', function (result) {
         this.assert.equal(result.value, devServer + 'static/chenille/19.png')
       })

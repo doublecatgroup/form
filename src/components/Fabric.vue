@@ -10,8 +10,8 @@
 
     <img class="design" :src="`/static/${value.key}/${value.design}.png`" :alt="value.no" height="64" width="64">
 
-    <input class="color" :value="value.color" readonly>
-    <input class="design-no" :value="value.no" readonly>
+    <input class="color" v-model="color" :class="color == design.value.color ? '' : 'modified'">
+    <input class="no" v-model="no" :class="no == design.value.no ? '' : 'modified'">
 
     <label>price: <input class="price" type="number" v-model.number="price" step="any" :class="price == fabric.price ? '' : 'modified'"></label>
   </span>
@@ -93,6 +93,20 @@ export default {
       }
     },
 
+    color: {
+      get () { return this.value.color },
+      set (value) {
+        this.$emit('input', R.assoc('color', value, this.value))
+      }
+    },
+
+    no: {
+      get () { return this.value.no },
+      set (value) {
+        this.$emit('input', R.assoc('no', value, this.value))
+      }
+    },
+
     price: {
       get () { return this.value.price },
       set (value) {
@@ -102,6 +116,10 @@ export default {
 
     fabric () {
       return this.fabrics[this.value.key]
+    },
+
+    design () {
+      return this.fabric.designs[this.value.design]
     }
   }
 }
