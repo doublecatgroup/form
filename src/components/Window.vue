@@ -23,12 +23,11 @@
 </template>
 
 <script>
-import QueryState from '@/mixins/querystate'
 import Fabric from './Fabric.vue'
 const R = require('ramda')
 
 const defaults = {
-  name: null,
+  name: undefined,
   width: 240,
   drop: 230,
   fabric: {key: 'custom', design: 'custom', price: 26},
@@ -91,17 +90,12 @@ export default {
 
   exportedData,
 
-  props: ['path', 'unit', 'exportView'],
-  mixins: [QueryState],
+  props: ['path', 'unit', 'exportView', 'value'],
 
   data () {
     return {
       headings
     }
-  },
-
-  qdata () {
-    return R.mapObjIndexed((value, key, obj) => { return {path: R.append(key, this.path), def: value} }, defaults)
   },
 
   methods: {
@@ -111,6 +105,18 @@ export default {
   },
 
   computed: {
+    ...R.mapObjIndexed((def, key, _) => {
+      return {
+        get () {
+          return this.value[key] || def
+        },
+        set (value) {
+          this.$emit('input', R.assoc(key, value, this.value))
+        }
+      }
+    }, defaults
+    ),
+
     total () {
       return this.materialUsage * this.fabric.price
     },

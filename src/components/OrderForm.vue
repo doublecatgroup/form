@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ol><window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="qdel(['item', id])"></window></ol>
+    <ol><window v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window></ol>
 
     <form class="controls" @submit.prevent="newItem">
       <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
@@ -21,7 +21,7 @@
         <tr>
           <th v-for="value in exportedData" :key="value.name">{{ value.name }}</th>
         </tr>
-        <window v-for="id in items" :key="id" :path="['item', id]" :unit="unit" :exportView="true"></window>
+        <window v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="true"></window>
       </table>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
 
   computed: {
     items () {
-      return R.keys(this.qget(['item']) || {})
+      return this.qget(['item']) || {}
     },
     unit () {
       return {
@@ -63,9 +63,15 @@ export default {
   },
 
   methods: {
-    newItem: function () {
-      var id = Math.max(0, ...this.items) + 1
-      this.qset(['item', id, 'name'], this.newItemName)
+    storeItem (id, ev) {
+      this.qset(['item'], R.assoc(id, ev, this.items))
+    },
+    removeItem (id) {
+      this.qdel(['item', id])
+    },
+    newItem () {
+      var id = (Math.max(0, ...R.keys(this.items)) + 1).toString()
+      this.storeItem(id, { name: this.newItemName })
       this.newItemName = ''
     }
   }

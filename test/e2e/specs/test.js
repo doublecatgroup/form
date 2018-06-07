@@ -15,7 +15,6 @@ module.exports = {
       .setValue('input#new-item-name', 'master')
       .click('button#new-item')
       .assert.value('#total-item-1', '124.8')
-      .assert.urlContains(encodeURI('item[1][width]=240'))
 
       // change width
       .clearValue('input#width-item-1')
@@ -35,7 +34,6 @@ module.exports = {
       .setValue('input#new-item-name', 'living')
       .click('button#new-item')
       .assert.value('#total-item-2', '124.8')
-      .assert.urlContains(encodeURI('item[2][width]=240'))
 
       // modify an item
       .clearValue('input#width-item-2')
@@ -60,7 +58,6 @@ module.exports = {
       .setValue('input#new-item-name', 'master')
       .click('button#new-item')
       .assert.value('#total-item-1', '124.8')
-      .assert.urlContains(encodeURI('item[1][width]=240'))
 
       // go back
       .back()
