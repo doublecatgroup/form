@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ol><window v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window></ol>
+    <ol><window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window-view></ol>
 
     <form class="controls" @submit.prevent="newItem">
       <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
@@ -21,7 +21,7 @@
         <tr>
           <th v-for="value in exportedData" :key="value.name">{{ value.name }}</th>
         </tr>
-        <window v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="true"></window>
+        <window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="true"></window-view>
       </table>
     </div>
   </div>
@@ -29,11 +29,11 @@
 
 <script>
 import QueryState from '@/mixins/querystate'
-import window, {exportedData} from './Window.vue'
+import WindowView, {exportedData} from './WindowView'
 const R = require('ramda')
 
 export default {
-  components: { window },
+  components: { WindowView },
   mixins: [QueryState],
 
   data () {
