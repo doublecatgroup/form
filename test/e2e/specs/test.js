@@ -14,7 +14,7 @@ module.exports = {
       // add an item
       .setValue('input#new-item-name', 'master')
       .click('button#new-item')
-      .assert.value('#total-item-1', '124.8')
+      .assert.value('#total-item-1', '124.80')
 
       // change width
       .clearValue('input#width-item-1')
@@ -33,13 +33,13 @@ module.exports = {
       // add an other item
       .setValue('input#new-item-name', 'living')
       .click('button#new-item')
-      .assert.value('#total-item-2', '124.8')
+      .assert.value('#total-item-2', '124.80')
 
       // modify an item
       .clearValue('input#width-item-2')
       .setValue('input#width-item-2', 100)
       .assert.urlContains(encodeURI('item[2][width]=100'))
-      .assert.value('#total-item-2', '52')
+      .assert.value('#total-item-2', '52.00')
       .assert.value('#total-item-1', '264.16')
 
       // reload page
@@ -47,7 +47,7 @@ module.exports = {
       .waitForElementVisible('#app', 1000)
       .assert.urlContains(encodeURI('item[2][width]=100'))
       .assert.value('input#width-item-2', '100')
-      .assert.value('#total-item-2', '52')
+      .assert.value('#total-item-2', '52.00')
 
       // remove items
       .click('button#remove-item-1')
@@ -57,7 +57,7 @@ module.exports = {
       // add an item
       .setValue('input#new-item-name', 'master')
       .click('button#new-item')
-      .assert.value('#total-item-1', '124.8')
+      .assert.value('#total-item-1', '124.80')
 
       // go back
       .back()

@@ -2,6 +2,8 @@
   <div>
     <ol><window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window-view></ol>
 
+    total: {{ total.toFixed(2) }}
+
     <form class="controls" @submit.prevent="newItem">
       <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
       <button id="new-item">Add</button>
@@ -30,6 +32,7 @@
 <script>
 import QueryState from '@/mixins/querystate'
 import WindowView, {exportedData} from './WindowView'
+import Window from './Window'
 const R = require('ramda')
 
 export default {
@@ -54,6 +57,15 @@ export default {
     items () {
       return this.qget(['item']) || {}
     },
+
+    windowItems () {
+      return R.map(item => Object.assign(new Window(), item), this.items)
+    },
+
+    total () {
+      return R.sum(R.pluck('total', R.values(this.windowItems)))
+    },
+
     unit () {
       return {
         name: this.unitName,

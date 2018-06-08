@@ -17,23 +17,17 @@
       <option v-for="(value, name) in headings" :key="name" :value="name"> {{ value.en }}</option>
     </select>
 
-    <label>total: <input :id="idFor('total')" type="number" v-model.number="total" step="any" readonly></label>
+    <label>total: <input :id="idFor('total')" type="number" :value="windowItem.total.toFixed(2)" step="any" readonly></label>
     <button :id="idFor('remove')" @click="$emit('remove')">Remove</button>
   </li>
 </template>
 
 <script>
+import Window from './Window'
 import Fabric from './Fabric.vue'
 const R = require('ramda')
 
-const defaults = {
-  name: undefined,
-  width: 240,
-  drop: 230,
-  fabric: {key: 'custom', design: 'custom', price: 26},
-  heading: 'deepPleat',
-  ratio: 2
-}
+const properties = Object.getOwnPropertyNames(new Window())
 
 const headings = {
   deepPleat: { cn: '四脚勾', en: 'Deep Pleat' },
@@ -81,7 +75,7 @@ export const exportedData = [
   },
   {
     name: 'material usage',
-    value () { return this.materialUsage }
+    value () { return this.windowItem.materialUsage }
   }
 ]
 
@@ -105,28 +99,27 @@ export default {
   },
 
   computed: {
-    ...R.mapObjIndexed((def, key, _) => {
+    ...R.map(key => {
       return {
         get () {
-          return this.value[key] || def
+          return this.windowItem[key]
         },
         set (value) {
           this.$emit('input', R.assoc(key, value, this.value))
         }
       }
-    }, defaults
+    }, R.zipObj(properties, properties)
     ),
 
-    total () {
-      return this.materialUsage * this.fabric.price
+    windowItem () {
+      return Object.assign(new Window(), this.value)
     },
+
     widthByUnit: {
       get () { return this.width / this.unit.multiplier },
       set (value) { this.width = value * this.unit.multiplier }
     },
-    materialUsage () {
-      return this.width * this.ratio / 100
-    },
+
     exportedData () {
       return R.map(v => { return {name: v.name, value: v.value.call(this)} }, exportedData)
     }
