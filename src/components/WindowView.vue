@@ -6,9 +6,8 @@
 
     <input v-model.trim="name" autocapitalize="none">
 
-    <label>width: <input :id="idFor('width')" type="number" v-model.number="widthByUnit" step="any"></label>
-
-    <label>drop:  <input type="number" v-model.number="drop"></label>
+    <label>width: <input-by-unit :unit="unit" :id="idFor('width')" v-model="width" /></label>
+    <label>drop:  <input-by-unit :unit="unit" v-model.number="drop" /></label>
     <label>ratio: <input type="number" v-model.number="ratio" step="0.1"></label>
 
     <fabric v-model="fabric"/>
@@ -25,6 +24,7 @@
 <script>
 import Window from './Window'
 import Fabric from './Fabric.vue'
+import InputByUnit from './InputByUnit'
 const R = require('ramda')
 
 const properties = Object.getOwnPropertyNames(new Window())
@@ -80,7 +80,7 @@ export const exportedData = [
 ]
 
 export default {
-  components: { Fabric },
+  components: { InputByUnit, Fabric },
 
   exportedData,
 
@@ -113,11 +113,6 @@ export default {
 
     windowItem () {
       return Object.assign(new Window(), this.value)
-    },
-
-    widthByUnit: {
-      get () { return this.width / this.unit.multiplier },
-      set (value) { this.width = value * this.unit.multiplier }
     },
 
     exportedData () {
