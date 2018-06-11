@@ -2,7 +2,9 @@
   <div>
     <ol><window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window-view></ol>
 
-    total: {{ total.toFixed(2) }}
+    <div v-if="hasItems">
+      total: {{ total.toFixed(2) }}
+    </div>
 
     <form class="controls" @submit.prevent="newItem">
       <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
@@ -54,6 +56,10 @@ export default {
   },
 
   computed: {
+    hasItems () {
+      return Object.keys(this.items).length !== 0
+    },
+
     items () {
       return this.qget(['item']) || {}
     },
