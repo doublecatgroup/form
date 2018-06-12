@@ -1,5 +1,5 @@
 <template>
-  <input v-model.number="valueByUnit" type="number" step="any">
+  <input v-model="valueByUnit" type="number" step="any">
 </template>
 
 <script>

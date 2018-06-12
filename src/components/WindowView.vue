@@ -6,9 +6,9 @@
 
     <input v-model.trim="name" autocapitalize="none">
 
-    <label>width: <input-by-unit :unit="unit" :id="idFor('width')" v-model="width" /></label>
-    <label>drop:  <input-by-unit :unit="unit" v-model.number="drop" /></label>
-    <label>ratio: <input type="number" v-model.number="ratio" step="0.1"></label>
+    <input-by-unit :unit="unit" v-model.number="width" placeholder="width" />
+    <input-by-unit :unit="unit" v-model.number="drop" placeholder="drop" />
+    <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
 
     <fabric v-model="fabric"/>
 
@@ -16,8 +16,8 @@
       <option v-for="(value, name) in headings" :key="name" :value="name"> {{ value.en }}</option>
     </select>
 
-    <label>total: <input :id="idFor('total')" type="number" :value="windowItem.total.toFixed(2)" step="any" readonly></label>
-    <button :id="idFor('remove')" @click="$emit('remove')">Remove</button>
+    <input placeholder="total" :value="windowItem.total.toFixed(2)" readonly>
+    <button name="remove" @click="$emit('remove')">Remove</button>
   </li>
 </template>
 
@@ -89,12 +89,6 @@ export default {
   data () {
     return {
       headings
-    }
-  },
-
-  methods: {
-    idFor (name) {
-      return R.prepend(name, this.path).join('-')
     }
   },
 

@@ -1,18 +1,18 @@
 <template>
   <span>
-    <select v-model="fabricKey" class="fabric">
+    <select v-model="fabricKey" name="fabric">
       <option v-for="(value, key) in fabrics" :key="key" :value="key">{{ value.name }}</option>
     </select>
 
-    <select v-model="designKey" class="design">
+    <select v-model="designKey" name="design">
       <option v-for="(value, key) in designs" :key="key" :value="key">{{ value.name }}</option>
     </select>
 
     <img v-if="designKey !== 'custom'" class="design" :src="`/static/${value.key}/${value.design}.png`" height="64" width="64">
 
-    <show-modifications-input placeholder="color" class="color" v-model="color" :original="design.value.color"/>
-    <show-modifications-input placeholder="no" class="no" v-model="no" :original="design.value.no"/>
-    <label>price: <show-modifications-input placeholder="price" class="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
+    <show-modifications-input placeholder="color" v-model="color" :original="design.value.color"/>
+    <show-modifications-input placeholder="no" v-model="no" :original="design.value.no"/>
+    <label>price: <show-modifications-input placeholder="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
   </span>
 </template>
 
