@@ -1,5 +1,6 @@
 export default class Window {
   name: string
+  fixation = {key: 'track', price: 15, mounting: 'ceiling'}
   width = 240
   drop = 230
   fabric = {key: 'custom', design: 'custom', price: 26}
@@ -14,7 +15,11 @@ export default class Window {
     return this.width * this.ratio / 100
   }
 
+  get fixationTotal () {
+    return this.width / 100 * this.fixation.price
+  }
+
   get total () {
-    return this.materialUsage * this.fabric.price
+    return this.materialUsage * this.fabric.price + this.fixationTotal
   }
 }

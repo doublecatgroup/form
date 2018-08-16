@@ -6,6 +6,8 @@
 
     <input v-model.trim="name" autocapitalize="none">
 
+    <fixation v-model="fixation"/>
+
     <input-by-unit :unit="unit" v-model.number="width" placeholder="width" />
     <input-by-unit :unit="unit" v-model.number="drop" placeholder="drop" />
     <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
@@ -23,6 +25,7 @@
 
 <script>
 import Window from './Window'
+import Fixation from './Fixation.vue'
 import Fabric from './Fabric.vue'
 import InputByUnit from './InputByUnit'
 const R = require('ramda')
@@ -80,7 +83,7 @@ export const exportedData = [
 ]
 
 export default {
-  components: { InputByUnit, Fabric },
+  components: { InputByUnit, Fixation, Fabric },
 
   exportedData,
 
