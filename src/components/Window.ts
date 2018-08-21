@@ -4,7 +4,7 @@ export default class Window {
   width = 240
   drop = 230
   fabric = {key: 'custom', design: 'custom', price: 26}
-  heading = 'deepPleat'
+  heading = 'doublePleat'
   ratio = 2
 
   constructor (name: string) {
