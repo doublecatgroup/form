@@ -19,7 +19,11 @@ export default class Window {
     return this.width / 100 * this.fixation.price
   }
 
+  get curtainsTotal () {
+    return this.materialUsage * this.fabric.price
+  }
+
   get total () {
-    return this.materialUsage * this.fabric.price + this.fixationTotal
+    return this.fixationTotal + this.curtainsTotal
   }
 }

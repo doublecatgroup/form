@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isEditMode">
     <ol><window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window-view></ol>
 
     <div v-if="hasItems">
@@ -18,6 +18,12 @@
         <option :key="false" :value="false">normal</option>
         <option :key="true" :value="true">debug</option>
       </select>
+
+      <select v-model="mode">
+        <option :key="'edit'" :value="'edit'">edit</option>
+        <option :key="'confirmation'" :value="'confirmation'">confirmation</option>
+      </select>
+
     </form>
 
     <div :style="debug ? '' : 'display: none'">
@@ -29,16 +35,18 @@
       </table>
     </div>
   </div>
+  <confirmation v-else :items="windowItems" :total="total" />
 </template>
 
 <script>
 import QueryState from '@/mixins/querystate'
+import Confirmation from './Confirmation'
 import WindowView, {exportedData} from './WindowView'
 import Window from './Window'
 const R = require('ramda')
 
 export default {
-  components: { WindowView },
+  components: { WindowView, Confirmation },
   mixins: [QueryState],
 
   data () {
@@ -56,6 +64,19 @@ export default {
   },
 
   computed: {
+    mode: {
+      get () {
+        return this.qget(['mode']) || 'edit'
+      },
+      set (value) {
+        return this.qset(['mode'], value)
+      }
+    },
+
+    isEditMode () {
+      return this.mode === 'edit'
+    },
+
     hasItems () {
       return Object.keys(this.items).length !== 0
     },
