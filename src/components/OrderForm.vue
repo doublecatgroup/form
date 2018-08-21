@@ -4,7 +4,7 @@
       <window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window-view>
       <li>
         <form @submit.prevent="newItem">
-          <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
+          <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none" class="window-name">
           <button id="new-item">Add</button>
         </form>
       </li>
@@ -117,6 +117,10 @@ export default {
 
 input {
   width: 5em;
+}
+
+input.window-name {
+  width: 10em;
 }
 
 input[type="number"] {

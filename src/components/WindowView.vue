@@ -4,23 +4,41 @@
   </tr>
   <li v-else :id="path.join('-')" class="item">
 
-    <input v-model.trim="name" autocapitalize="none">
+    <fieldset>
+      <legend>window:</legend>
+      <input v-model.trim="name" autocapitalize="none" class="window-name">
+      <label>width:
+        <input-by-unit :unit="unit" v-model.number="width" placeholder="width" />
+      </label>
+    </fieldset>
 
-    <fixation v-model="fixation"/>
+    <fieldset>
+      <legend>fixation</legend>
+      <fixation v-model="fixation"/>
+    </fieldset>
+    <fieldset>
+      <legend>fabric</legend>
+      <fabric v-model="fabric"/>
+    </fieldset>
 
-    <input-by-unit :unit="unit" v-model.number="width" placeholder="width" />
-    <input-by-unit :unit="unit" v-model.number="drop" placeholder="drop" />
+    <fieldset>
+      <legend>tailoring</legend>
+      <select v-model="heading">
+        <option v-for="(value, name) in headings" :key="name" :value="name"> {{ value.en }}</option>
+      </select>
+      <label>drop:
+        <input-by-unit :unit="unit" v-model.number="drop" placeholder="drop" />
+      </label>
+      <label>ratio:
+        <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
+      </label>
+    </fieldset>
 
-    <fabric v-model="fabric"/>
-
-    <select v-model="heading">
-      <option v-for="(value, name) in headings" :key="name" :value="name"> {{ value.en }}</option>
-    </select>
-
-    <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
-
-    <input placeholder="total" :value="windowItem.total.toFixed(2)" readonly>
-    <button name="remove" @click="$emit('remove')">Remove</button>
+    <fieldset>
+      <legend>total</legend>
+      <input placeholder="total" :value="windowItem.total.toFixed(2)" readonly>
+      <button name="remove" @click="$emit('remove')">Remove</button>
+    </fieldset>
   </li>
 </template>
 
