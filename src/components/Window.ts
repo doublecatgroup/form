@@ -1,6 +1,6 @@
 export default class Window {
   name: string
-  fixation = {key: 'track', price: 15, mounting: 'ceiling'}
+  fixation = {key: 'none', price: 0, mounting: 'ceiling'}
   width = 240
   drop = 230
   fabric = {key: 'custom', design: 'custom', price: 26}
