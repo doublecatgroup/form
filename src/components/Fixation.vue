@@ -3,10 +3,12 @@
     <select v-model="key">
       <option v-for="(value, key) in fixations" :key="key" :value="key"> {{ value.name }}</option>
     </select>
-    <show-modifications-input placeholder="price" type="number" v-model.number="price" step="any" :original="fixations[value.key].price"/>
-    <select v-model="mounting">
-      <option v-for="(value, key) in mountings" :key="key" :value="key"> {{ value }}</option>
-    </select>
+    <template v-if="key != 'none'">
+      <show-modifications-input placeholder="price" type="number" v-model.number="price" step="any" :original="fixations[value.key].price"/>
+      <select v-model="mounting">
+        <option v-for="(value, key) in mountings" :key="key" :value="key"> {{ value }}</option>
+      </select>
+    </template>
   </span>
 </template>
 
