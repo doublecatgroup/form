@@ -122,10 +122,6 @@ export default {
 
 <style>
 
-.item {
-  margin-top: 1rem;
-}
-
 label {
   white-space:nowrap;
 }

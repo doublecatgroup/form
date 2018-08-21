@@ -1,15 +1,20 @@
 <template>
   <div v-if="isEditMode">
-    <ol><window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window-view></ol>
+    <ol class="items">
+      <window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="false" @remove="removeItem(id)"></window-view>
+      <li>
+        <form @submit.prevent="newItem">
+          <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
+          <button id="new-item">Add</button>
+        </form>
+      </li>
+    </ol>
 
-    <div v-if="hasItems">
-      total: {{ total.toFixed(2) }}
+    <div v-if="hasItems" class="grand-total">
+      total: <input placeholder="total" :value="total.toFixed(2)" readonly>
     </div>
 
-    <form class="controls" @submit.prevent="newItem">
-      <input id="new-item-name" v-model.trim="newItemName" autocapitalize="none">
-      <button id="new-item">Add</button>
-
+    <center class="controls" >
       <select v-model="unitName" id="select-unit">
         <option v-for="(_, name) in units" :key="name" :value="name">{{ name }}</option>
       </select>
@@ -18,8 +23,7 @@
         <option :key="'edit'" :value="'edit'">edit</option>
         <option :key="'confirmation'" :value="'confirmation'">confirmation</option>
       </select>
-
-    </form>
+    </center>
 
     <table>
       <tr>
@@ -112,14 +116,14 @@ export default {
 <style>
 
 input {
-  width: 5rem;
+  width: 5em;
 }
 
-.controls {
+input[type="number"] {
+  width: 3em;
+}
+
+ol.items > li, .controls {
   margin-top: 1rem;
-}
-
-input:read-only {
-    background-color: #EEF;
 }
 </style>
