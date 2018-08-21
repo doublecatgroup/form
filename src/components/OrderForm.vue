@@ -19,18 +19,25 @@
         <option v-for="(_, name) in units" :key="name" :value="name">{{ name }}</option>
       </select>
 
+      <select v-model="debug">
+        <option :key="false" :value="false">normal</option>
+        <option :key="true" :value="true">debug</option>
+      </select>
+
       <select v-model="mode">
         <option :key="'edit'" :value="'edit'">edit</option>
         <option :key="'confirmation'" :value="'confirmation'">confirmation</option>
       </select>
     </center>
 
-    <table>
-      <tr>
-        <th v-for="value in exportedData" :key="value.name">{{ value.name }}</th>
-      </tr>
-      <window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="true"></window-view>
-    </table>
+    <div :style="debug ? '' : 'display: none'">
+      <table>
+        <tr>
+          <th v-for="value in exportedData" :key="value.name">{{ value.name }}</th>
+        </tr>
+        <window-view v-for="(item, id) in items" :value="item" @input="storeItem(id, $event)" :key="id" :path="['item', id]" :unit="unit" :exportView="true"></window-view>
+      </table>
+    </div>
   </div>
   <confirmation v-else :items="windowItems" :total="total" />
 </template>
@@ -55,6 +62,7 @@ export default {
         inch: 2.54
       },
       unitName: 'cm',
+      debug: true,
       exportedData: exportedData
     }
   },
