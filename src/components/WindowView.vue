@@ -13,10 +13,11 @@
 
     <fabric v-model="fabric"/>
 
-    <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
     <select v-model="heading">
       <option v-for="(value, name) in headings" :key="name" :value="name"> {{ value.en }}</option>
     </select>
+
+    <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
 
     <input placeholder="total" :value="windowItem.total.toFixed(2)" readonly>
     <button name="remove" @click="$emit('remove')">Remove</button>
