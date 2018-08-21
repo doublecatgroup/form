@@ -62,7 +62,7 @@ export default {
         inch: 2.54
       },
       unitName: 'cm',
-      debug: true,
+      debug: false,
       exportedData: exportedData
     }
   },
