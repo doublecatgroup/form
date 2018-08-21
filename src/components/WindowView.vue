@@ -10,10 +10,10 @@
 
     <input-by-unit :unit="unit" v-model.number="width" placeholder="width" />
     <input-by-unit :unit="unit" v-model.number="drop" placeholder="drop" />
-    <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
 
     <fabric v-model="fabric"/>
 
+    <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
     <select v-model="heading">
       <option v-for="(value, name) in headings" :key="name" :value="name"> {{ value.en }}</option>
     </select>
