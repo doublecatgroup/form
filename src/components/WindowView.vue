@@ -103,6 +103,10 @@ export const exportedData = [
   {
     name: 'material usage',
     value () { return this.windowItem.materialUsage }
+  },
+  {
+    name: 'remarks',
+    value () { return this.windowItem.remarks }
   }
 ]
 
