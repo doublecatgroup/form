@@ -36,7 +36,7 @@
 
     <fieldset>
       <legend>remarks</legend>
-      <textarea v-model="remarks"/>
+      <input v-model="remarks" class="remarks"/>
     </fieldset>
 
     <fieldset>
@@ -161,10 +161,7 @@ label {
   font-size: 0.5rem;
 }
 
-textarea {
+input.remarks {
   width: 100%;
-  height: 3.2em;
-  resize: none;
-  -webkit-overflow-scrolling: touch;
 }
 </style>
