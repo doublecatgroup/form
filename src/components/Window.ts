@@ -6,6 +6,7 @@ export default class Window {
   fabric = {key: 'custom', design: 'custom', price: 26}
   heading = 'doublePleat'
   ratio = 2
+  remarks = ''
 
   constructor (name: string) {
     this.name = name

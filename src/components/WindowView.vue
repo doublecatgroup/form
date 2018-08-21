@@ -5,7 +5,7 @@
   <li v-else :id="path.join('-')" class="item">
 
     <fieldset>
-      <legend>window:</legend>
+      <legend>window</legend>
       <input v-model.trim="name" autocapitalize="none" class="window-name">
       <label>width:
         <input-by-unit :unit="unit" v-model.number="width" placeholder="width" />
@@ -32,6 +32,11 @@
       <label>ratio:
         <input type="number" v-model.number="ratio" step="0.1" placeholder="ratio" />
       </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>remarks</legend>
+      <textarea v-model="remarks"/>
     </fieldset>
 
     <fieldset>
@@ -150,5 +155,12 @@ label {
 
 label {
   font-size: 0.5rem;
+}
+
+textarea {
+  width: 100%;
+  height: 3.2em;
+  resize: none;
+  -webkit-overflow-scrolling: touch;
 }
 </style>

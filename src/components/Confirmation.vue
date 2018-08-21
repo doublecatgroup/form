@@ -46,9 +46,4 @@ table.confirmation {
 table.confirmation .total {
   text-align: right;
 }
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
 </style>

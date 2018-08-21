@@ -138,4 +138,8 @@ input[type="number"] {
 ol.items > li, .controls {
   margin-top: 1rem;
 }
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 </style>
