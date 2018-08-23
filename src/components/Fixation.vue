@@ -23,7 +23,7 @@ const fixations = {
   },
   track: {
     name: 'Track',
-    price: 15
+    price: 10
   },
   rod: {
     name: 'Rod',
