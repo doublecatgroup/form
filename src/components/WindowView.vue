@@ -66,7 +66,7 @@ const headings = {
 
 export const exportedData = [
   {
-    name: 'window',
+    name: 'window窗口',
     value () { return this.name }
   },
   {
