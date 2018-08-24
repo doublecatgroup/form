@@ -40,7 +40,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>total</legend>
+      <legend>Total(S$)</legend>
       <input placeholder="total" :value="windowItem.total.toFixed(2)" readonly>
       <button name="remove" @click="$emit('remove')">Remove</button>
     </fieldset>
