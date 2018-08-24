@@ -70,42 +70,42 @@ export const exportedData = [
     value () { return this.name }
   },
   {
-    name: 'fabric',
+    name: 'fabric布料',
     value () { return this.fabric.key }
   },
   {
-    name: 'design',
+    name: 'design色号',
     value () { return this.fabric.no }
   },
   {
-    name: 'color',
+    name: 'color颜色',
     value () { return this.fabric.color }
   },
   {
-    name: 'width',
+    name: 'width宽',
     value () { return this.width / 100 }
   },
   {
-    name: 'height',
+    name: 'height高',
     value () { return this.drop / 100 }
   },
   {
-    name: 'ratio',
+    name: 'ratio折率',
     value () { return this.ratio }
   },
   {
-    name: 'heading',
+    name: 'heading加工',
     value () {
       const heading = this.headings[this.heading]
       return `${heading.cn} (${heading.en})`
     }
   },
   {
-    name: 'material usage',
+    name: 'material usage用料',
     value () { return this.windowItem.materialUsage }
   },
   {
-    name: 'remarks',
+    name: 'remarks备注',
     value () { return this.windowItem.remarks }
   }
 ]
