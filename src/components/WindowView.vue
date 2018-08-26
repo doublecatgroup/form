@@ -66,46 +66,46 @@ const headings = {
 
 export const exportedData = [
   {
-    name: 'window窗口',
+    name: 'Window窗口',
     value () { return this.name }
   },
   {
-    name: 'fabric布料',
+    name: 'Fabric布料',
     value () { return this.fabric.key }
   },
   {
-    name: 'design色号',
+    name: 'Design色号',
     value () { return this.fabric.no }
   },
   {
-    name: 'color颜色',
+    name: 'Color颜色',
     value () { return this.fabric.color }
   },
   {
-    name: 'width宽',
+    name: 'Width宽',
     value () { return this.width / 100 }
   },
   {
-    name: 'height高',
+    name: 'Height高',
     value () { return this.drop / 100 }
   },
   {
-    name: 'ratio折率',
+    name: 'Ratio折率',
     value () { return this.ratio }
   },
   {
-    name: 'heading加工',
+    name: 'Heading加工',
     value () {
       const heading = this.headings[this.heading]
       return `${heading.cn} (${heading.en})`
     }
   },
   {
-    name: 'material usage用料',
+    name: 'Material usage用料',
     value () { return this.windowItem.materialUsage }
   },
   {
-    name: 'remarks备注',
+    name: 'Remarks备注',
     value () { return this.windowItem.remarks }
   }
 ]
