@@ -5,14 +5,20 @@
       <tr>
         <th>Window</th>
         <th>Item</th>
-        <th>Size (cm)</th>
-        <th>Price (SGD)</th>
+        <th>Size(cm)</th>
+        <th>Material</th>
+        <th>Color Number</th>
+        <th>Sewing Type</th>
+        <th>Price(SGD)</th>
       </tr>
       <template v-for="(item, id) in items">
         <tr :key="id">
           <td>{{ item.name }}</td>
           <td>curtains</td>
           <td> {{ item.width }} x {{ item.drop }} </td>
+          <td> {{ fabric }} </td>
+          <td> {{ design }} </td>
+          <td> {{ heading }} </td>
           <td class="total">{{ item.curtainsTotal.toFixed(2) }}</td>
         </tr>
         <tr v-if="item.fixation.key != 'none'" :key="id + '-fixation'">
@@ -24,7 +30,7 @@
       </template>
       <tr>
         <th colspan="3">Total</th>
-        <th class="total"> {{ total.toFixed(2) }} </th>
+        <th class="Grand Total(S$)"> {{ total.toFixed(2) }} </th>
       </tr>
     </table>
   </div>
