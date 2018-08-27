@@ -9,6 +9,7 @@
         <option v-for="(value, key) in mountings" :key="key" :value="key"> {{ value }}</option>
       </select>
     </template>
+    <label>Rod Design:  <show-modifications-input placeholder="Rod Design" v-model="Rod Design" ><\label>
   </span>
 </template>
 
