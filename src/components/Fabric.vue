@@ -62,6 +62,18 @@ const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
       '22': {color: 'purple'}
     }
   },
+  Flower Linen: {
+    name: 'Flower Linen',
+    price: 26,
+    designNameTemplate: '%(key)s',
+    designNoTemplate: '花捻麻-%(key)s',
+    designs: {
+      '1': {color: 'beige'},
+      '2': {color: 'brown'},
+      '3': {color: 'grey'},
+      '4': {color: 'green grey'}
+    }
+  },
   chenille: {
     name: 'Chenille',
     price: 30,
