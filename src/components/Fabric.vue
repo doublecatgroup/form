@@ -43,10 +43,11 @@ export function mkFabric (key, fabric) {
 const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
   custom: {
     name: '-',
+    price: 26,
     designNameTemplate: '-',
     designNoTemplate: '',
     designs: {
-      custom: {price: 26}
+      custom: {color: ''}
     }
   },
   bolove: {
