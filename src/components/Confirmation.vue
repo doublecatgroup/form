@@ -5,6 +5,8 @@
       <tr>
         <th>Window</th>
         <th>Item</th>
+        <th>Design</th>
+        <th>Sewing</th>
         <th>Size (cm)</th>
         <th>Price (SGD)</th>
       </tr>
@@ -12,12 +14,16 @@
         <tr :key="id">
           <td>{{ item.name }}</td>
           <td>curtains</td>
+          <td>{{ item.design }}</td>
+          <td>{{ item.heading }}</td>      
           <td> {{ item.width }} x {{ item.drop }} </td>
           <td class="total">{{ item.curtainsTotal.toFixed(2) }}</td>
         </tr>
         <tr v-if="item.fixation.key != 'none'" :key="id + '-fixation'">
           <td>{{ item.name }}</td>
           <td> {{ item.fixation.key }} </td>
+          <td>{{ item.mountings }}</td>
+          <td>NA</td>
           <td> {{ item.width }} </td>
           <td class="total">{{ item.fixationTotal.toFixed(2) }}</td>
         </tr>
