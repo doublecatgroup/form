@@ -25,9 +25,17 @@ const fixations = {
     name: 'Track',
     price: 10
   },
+  'double track': {
+    name: 'Double Track',
+    price: 20
+  },
   rod: {
     name: 'Rod',
     price: 26
+  },
+  'double rod': {
+    name: 'Double Rod',
+    price: 52
   }
 }
 
