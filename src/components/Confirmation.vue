@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Order Confirmation</h1>
+    <h1>{{ title }}</h1>
     <table class="confirmation">
       <tr>
         <th>Window</th>
@@ -32,7 +32,12 @@
 
 <script>
 export default {
-  props: ['items', 'total']
+  props: ['items', 'total', 'mode'],
+  computed: {
+    title () {
+      return this.mode === 'confirmation' ? 'Order Confirmation' : 'Quotation'
+    }
+  }
 }
 </script>
 

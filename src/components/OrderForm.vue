@@ -26,6 +26,7 @@
 
       <select v-model="mode">
         <option :key="'edit'" :value="'edit'">edit</option>
+        <option :key="'quotation'" :value="'quotation'">quotation</option>
         <option :key="'confirmation'" :value="'confirmation'">confirmation</option>
       </select>
     </center>
@@ -39,7 +40,7 @@
       </table>
     </div>
   </div>
-  <confirmation v-else :items="windowItems" :total="total" />
+  <confirmation v-else :items="windowItems" :total="total" :mode="mode" />
 </template>
 
 <script>
