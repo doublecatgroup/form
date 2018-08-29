@@ -12,7 +12,7 @@
 
     <show-modifications-input placeholder="color" v-model="color" :original="design.value.color"/>
     <show-modifications-input placeholder="no" v-model="no" :original="design.value.no"/>
-    <label>priceS$: <show-modifications-input placeholder="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
+    <label>UnitPrice(S$): <show-modifications-input placeholder="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
   </span>
 </template>
 
@@ -72,6 +72,24 @@ const fabrics = R.mapObjIndexed((value, key, _) => mkFabric(key, value), {
       '2': {color: 'brown'},
       '3': {color: 'grey'},
       '4': {color: 'green grey'}
+      '5': {color: 'brown'},
+      '6': {color: 'perple'},
+      '7': {color: 'blue'},
+      '8': {color: 'green'}
+      '9': {color: 'blue'},
+      '10': {color: 'dark red'},
+      '11': {color: 'brown'},
+      '12': {color: 'grey'}
+      '13': {color: 'brown'},
+      '14': {color: 'brown'},
+      '15': {color: 'red'},
+      '16': {color: 'beige'}
+      '17': {color: 'blue'},
+      '18': {color: 'grey'}
+      '19': {color: 'dark grey'},
+      '20': {color: 'red'},
+      '21': {color: 'perple'},
+      '22': {color: 'orenge'}
     }
   },
   chenille: {
