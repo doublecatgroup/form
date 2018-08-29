@@ -12,7 +12,7 @@
 
     <show-modifications-input placeholder="color" v-model="color" :original="design.value.color"/>
     <show-modifications-input placeholder="no" v-model="no" :original="design.value.no"/>
-    <label>priceS$: <show-modifications-input placeholder="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
+    <label>UnitPrice(S$): <show-modifications-input placeholder="price" type="number" v-model.number="price" step="any" :original="fabric.price"/></label>
   </span>
 </template>
 
